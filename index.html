@@ -114,7 +114,7 @@
 
         //funció per sonar audio, va a buscar la carpeta de l'idioma
         function playAudio(nomFitxer) {
-            const ruta = `assets/audios/${idioma}/${nomFitxer}.mp3`;
+            const ruta = `model360/assets/audios/${idioma}/${nomFitxer}.mp3`;
             console.log('Reproduint:', ruta);
             if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                 sound.components.sound.stopSound();
