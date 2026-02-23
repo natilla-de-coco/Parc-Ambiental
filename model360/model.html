@@ -8,7 +8,7 @@
     <a-scene cursor="rayOrigin: mouse">
         <a-assets>
             <!-- Imatges 360 -->
-            <img id="ipresentacio" src="assets/imatges/0_general_gris.jpg">
+            <img id="ipresentacio" src="assets/imatges/imatge0.jpg">
             <img id="ipresentacio2" src="assets/imatges/0_general.jpg">
             <img id="i00" src="assets/imatges/0_general.jpg">
             <img id="i01" src="assets/imatges/1_1oficines.jpg">   
@@ -20,6 +20,8 @@
             <img id="i09" src="assets/imatges/7_plantacompostatge.jpg">
             <img id="i02" src="assets/imatges/8_novaplanta.jpg">
             <img id="i03" src="assets/imatges/9_falconeria.jpg">
+            <img id="i010" mylink="https://fernando252778.github.io/XDDD/">            
+
             
 
             <!--imatge del plano-->
@@ -33,6 +35,7 @@
         </a-assets>
 
         <a-entity camera look-controls wasd-controls="false"></a-entity>
+        <a-entity id="sound" sound></a-entity>
 
         <!-- Entorn 360 inicial -->
         <a-sky id="sky" src="#ipresentacio"></a-sky>
@@ -73,6 +76,9 @@
 
         <a-sphere id="esfera9" boto9="" position="0.10 -1.30 -2" radius="0.027" color="green" visible="false"
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere> 
+                 
+        <a-sphere id="inici" inici="" position="0.97 -0.53 -2" radius="0.027" color="green" visible="false"
+            animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"; mylink="https://fernando252778.github.io/XDDD/"></a-sphere>
         
         <a-plane id="plano" position="0 -1 -2" src="#dibuplano" rotation="0 0 0" scale="2 1 2" id="plano" position="0 -1 -2"
          src="#dibuplano" rotation="0 0 0" scale="2 1 2" visible="false" > </a-plane>
@@ -99,6 +105,7 @@
         const esfera7 = document.querySelector('#esfera7');
         const esfera8 = document.querySelector('#esfera8');
         const esfera9 = document.querySelector('#esfera9');
+        const inici = document.querySelector('#inici');
         const plano = document.querySelector('#plano');
         const mapa = document.querySelector('#plano');
 
@@ -136,10 +143,11 @@
                     esfera7.setAttribute('visible', true);
                     esfera8.setAttribute('visible', true); 
                     esfera9.setAttribute('visible', true); 
+                    inici.setAttribute('visible', true);
                     plano.setAttribute('visible', true);
                     mapa.setAttribute('visible', true);
                     idioma = "uk"
-                    playAudio(/assets/audios/uk/Abocador.mp3);  
+                    playAudio("Abocador");  
                 })
             }
         });
@@ -160,10 +168,11 @@
                     esfera7.setAttribute('visible', true);
                     esfera8.setAttribute('visible', true); 
                     esfera9.setAttribute('visible', true); 
+                    inici.setAttribute('visible', true); 
                     plano.setAttribute('visible', true);
                     mapa.setAttribute('visible', true);
                     idioma = "uk"
-                    playAudio(/assets/audios/uk/Abocador.mp3);  
+                    playAudio("Abocador.mp3");  
                 })
             }
         });
@@ -184,9 +193,10 @@
                     esfera7.setAttribute('visible', true);
                     esfera8.setAttribute('visible', true);
                     esfera9.setAttribute('visible', true);
+                    inici.setAttribute('visible', true); 
                     mapa.setAttribute('visible', true);
                     idioma = "cat"
-                    playAudio(/assets/audios/cat/Abocador.mp3);  
+                    playAudio("Abocador");
                 })
             }
         });
@@ -207,9 +217,10 @@
                     esfera7.setAttribute('visible', true);
                     esfera8.setAttribute('visible', true);
                     esfera9.setAttribute('visible', true);
+                    inici.setAttribute('visible', true); 
                     mapa.setAttribute('visible', true);
                     idioma = "es"
-                    playAudio(/assets/audios/es/Abocador.mp3);    
+                    playAudio("Abocador");
                 })
             }
         });
@@ -317,6 +328,17 @@
         }); 
               
         AFRAME.registerComponent("plano", {
+            init: function () {
+                this.el.addEventListener("click", (e) => {
+                    sky.setAttribute('src', '#i010'); //Mostra la imatge de la torre                
+                    if (sound.components.sound.isPlaying) {
+                        sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
+                    }
+                    playAudio("xddddddd");
+                })
+            }
+        });       
+        AFRAME.registerComponent("inici", {
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i010'); //Mostra la imatge de la torre                
