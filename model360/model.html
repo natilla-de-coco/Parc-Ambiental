@@ -78,7 +78,7 @@
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere> 
                  
         <a-sphere id="inici" inici="" position="0.97 -0.53 -2" radius="0.027" color="red" visible="false"
-            animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"; mylink="https://fernando252778.github.io/XDDD/"></a-sphere>
+            animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere>
         
         <a-plane id="plano" position="0 -1 -2" src="#dibuplano" rotation="0 0 0" scale="2 1 2" id="plano" position="0 -1 -2"
          src="#dibuplano" rotation="0 0 0" scale="2 1 2" visible="false" > </a-plane>
@@ -115,12 +115,17 @@
         //funció per sonar audio, va a buscar la carpeta de l'idioma
         function playAudio(nomFitxer) {
             const ruta = `assets/audios/${idioma}/${nomFitxer}.mp3`;
-            console.log(ruta);
-            if (sound.components.sound && sound.components.sound.isPlaying) {
+            console.log('Reproduint:', ruta);
+            if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                 sound.components.sound.stopSound();
             }
-            sound.setAttribute('sound', `src: ${ruta}`);
-            sound.components.sound.playSound();
+            sound.setAttribute('sound', `src: url(${ruta})`);
+            // Espera un moment perquè el component `sound` s'inicialitzi abans de reproduir
+            setTimeout(() => {
+                if (sound.components && sound.components.sound) {
+                    sound.components.sound.playSound();
+                }
+            }, 100);
         }
 
 
@@ -147,7 +152,7 @@
                     plano.setAttribute('visible', true);
                     mapa.setAttribute('visible', true);
                     idioma = "uk"
-                    playAudio(Abocador.mp3);  
+                    playAudio("Abocador");  
                 })
             }
         });
@@ -172,7 +177,7 @@
                     plano.setAttribute('visible', true);
                     mapa.setAttribute('visible', true);
                     idioma = "uk"
-                    playAudio(Abocador.mp3);  
+                    playAudio("Abocador");  
                 })
             }
         });
@@ -196,7 +201,7 @@
                     inici.setAttribute('visible', true); 
                     mapa.setAttribute('visible', true);
                     idioma = "cat"
-                    playAudio(Abocador.mp3);
+                    playAudio("Abocador");
                 })
             }
         });
@@ -220,7 +225,7 @@
                     inici.setAttribute('visible', true); 
                     mapa.setAttribute('visible', true);
                     idioma = "es"
-                    playAudio(Abocador.mp3);
+                    playAudio("Abocador");
                 })
             }
         });
@@ -229,10 +234,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i01'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio(Oficines.mp3);
+                    playAudio("Oficines");
                 })
             }
         });
@@ -240,10 +245,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i02'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio(Nova-planta-de-valorització.mp3);
+                    playAudio("Nova-planta-de-valorització");
                 })
             }
         });
@@ -252,10 +257,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i03'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio(Falconeria.mp3);
+                    playAudio("Falconeria");
                 })
             }
         });  
@@ -264,10 +269,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i04'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio(Parc-solar.mp3);
+                    playAudio("Parc-solar");
                 })
             }
         });      
@@ -275,10 +280,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i05'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio(Parc-ambiental.mp3);
+                    playAudio("Abocador");
                 })
             }
         });
@@ -286,10 +291,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i06'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio(Motor-de-biogàs.mp3);
+                    playAudio("Motor-de-biogàs");
                 })
             }
         });  
@@ -297,10 +302,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i07'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio(Planta-de-transferència-de-vidre-i-envasos.mp3);
+                    playAudio("Planta-de-transferència-de-vidre-i-envasos");
                 })
             }
         });     
@@ -308,10 +313,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i08'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio(Basses-de-aigües-pluvials.mp3);
+                    playAudio("Basses-d’aigües-pluvials");
                 })
             }
         });        
@@ -319,10 +324,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i09'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio(Planta-de-compostatge.mp3);
+                    playAudio("Planta-de-compostatge");
                 })
             }
         }); 
@@ -331,9 +336,10 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i010'); //Mostra la imatge de la torre                
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
+                    playAudio("Parc-ambiental");
                 })
             }
         });       
@@ -356,7 +362,7 @@
                     inici.setAttribute('visible', false);
                     plano.setAttribute('visible', false);
                     mapa.setAttribute('visible', false);
-                    if (sound.components.sound.isPlaying) {
+                    if (sound.components && sound.components.sound && sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
                 })
