@@ -77,7 +77,7 @@
         <a-sphere id="esfera9" boto9="" position="0.10 -1.30 -2" radius="0.027" color="green" visible="false"
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere> 
                  
-        <a-sphere id="inici" inici="" position="0.97 -0.53 -2" radius="0.027" color="green" visible="false"
+        <a-sphere id="inici" inici="" position="0.97 -0.53 -2" radius="0.027" color="red" visible="false"
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"; mylink="https://fernando252778.github.io/XDDD/"></a-sphere>
         
         <a-plane id="plano" position="0 -1 -2" src="#dibuplano" rotation="0 0 0" scale="2 1 2" id="plano" position="0 -1 -2"
@@ -341,11 +341,25 @@
         AFRAME.registerComponent("inici", {
             init: function () {
                 this.el.addEventListener("click", (e) => {
-                    sky.setAttribute('src', '#i010'); //Mostra la imatge de la torre                
+                    sky.setAttribute('src', '#ipresentacio'); //Mostra la imatge inicial
+                    banderaEs.setAttribute('visible', true);
+                    banderaCat.setAttribute('visible', true);
+                    banderaUk.setAttribute('visible', true);
+                    esfera1.setAttribute('visible', false);
+                    esfera2.setAttribute('visible', false);
+                    esfera3.setAttribute('visible', false);
+                    esfera4.setAttribute('visible', false);
+                    esfera5.setAttribute('visible', false);
+                    esfera6.setAttribute('visible', false);
+                    esfera7.setAttribute('visible', false);
+                    esfera8.setAttribute('visible', false);
+                    esfera9.setAttribute('visible', false);
+                    inici.setAttribute('visible', false);
+                    plano.setAttribute('visible', false);
+                    mapa.setAttribute('visible', false);
                     if (sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
-                    playAudio("xddddddd");
                 })
             }
         });
