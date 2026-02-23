@@ -8,18 +8,18 @@
     <a-scene cursor="rayOrigin: mouse">
         <a-assets>
             <!-- Imatges 360 -->
-            <img id="ipresentacio" src="assets/imatges/imatge0.jpg">
+            <img id="ipresentacio" src="assets/imatges/0_general_gris.jpg">
             <img id="ipresentacio2" src="assets/imatges/0_general.jpg">
             <img id="i00" src="assets/imatges/0_general.jpg">
             <img id="i01" src="assets/imatges/1_1oficines.jpg">   
-            <img id="i02" src="assets/imatges/ermitaAltar.jpg">
-            <img id="i03" src="assets/imatges/3_plantatransferencia.jpg">
-            <img id="i04" src="assets/imatges/ermitaAltar.jpg">
-            <img id="i05" src="assets/imatges/ermitaAltar.jpg">
-            <img id="i06" src="assets/imatges/ermitaAltar.jpg">
-            <img id="i07" src="assets/imatges/ermitaAltar.jpg">
-            <img id="i08" src="assets/imatges/ermitaAltar.jpg">
-            <img id="i09" src="assets/imatges/ermitaAltar.jpg">
+            <img id="i05" src="assets/imatges/2_abocador.jpg">
+            <img id="i07" src="assets/imatges/3_plantatransferencia.jpg">    
+            <img id="i06" src="assets/imatges/4_motorbiogas.jpg">
+            <img id="i08" src="assets/imatges/5_bassesdaigues.jpg">
+            <img id="i04" src="assets/imatges/6_parcsolar.jpg">
+            <img id="i09" src="assets/imatges/7_plantacompostatge.jpg">
+            <img id="i02" src="assets/imatges/8_novaplanta.jpg">
+            <img id="i03" src="assets/imatges/9_falconeria.jpg">
             
 
             <!--imatge del plano-->
@@ -56,23 +56,29 @@
         <a-sphere id="esfera3" boto3="" position="0.17 -0.69 -2" radius="0.027" color="green" visible="false"
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere>
 
-        <a-sphere id="esfera4" boto4="" position="-0.47 -1.01 -2" radius="0.027" color="green" visible="false"
+        <a-sphere id="esfera4" boto4="" position="-0.47 -1.14 -2" radius="0.027" color="green" visible="false"
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere>
 
-        <a-sphere id="esfera5" boto5="" position="-0.46 -0.71 -2" radius="0.027" color="green" visible="false"
+        <a-sphere id="esfera5" boto5="" position="-0.50 -0.78 -2" radius="0.027" color="green" visible="false"
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere>
         
-        <a-sphere id="esfera6" boto6="" position="-0.67 -0.71 -2" radius="0.027" color="green" visible="false"
+        <a-sphere id="esfera6" boto6="" position="-0.72 -0.77 -2" radius="0.027" color="green" visible="false"
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere>
 
-        <a-sphere id="esfera7" boto7="" position="-0.64 -0.77 -2" radius="0.027" color="green" visible="false"
+        <a-sphere id="esfera7" boto7="" position="-0.68 -0.85 -2" radius="0.027" color="green" visible="false"
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere>
         
-        <a-sphere id="esfera8" boto8="" position="-0.60 -0.85 -2" radius="0.027" color="green" visible="false"
+        <a-sphere id="esfera8" boto8="" position="-0.65 -0.95 -2" radius="0.027" color="green" visible="false"
             animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere>
 
-        <a-sphere id="esfera9" boto9="" position="0.10 -1.16 -2" radius="0.027" color="green" visible="false"
-            animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere>
+        <a-sphere id="esfera9" boto9="" position="0.10 -1.30 -2" radius="0.027" color="green" visible="false"
+            animation="property: scale; dur: 1000;  to: 1.2 1.2 1.2; dir: alternate;  loop: true"></a-sphere> 
+        
+        <a-plane id="plano" position="0 -1 -2" src="#dibuplano" rotation="0 0 0" scale="2 1 2" id="plano" position="0 -1 -2"
+         src="#dibuplano" rotation="0 0 0" scale="2 1 2" visible="false" > </a-plane>
+
+
+
 
     </a-scene>
 
@@ -93,6 +99,7 @@
         const esfera7 = document.querySelector('#esfera7');
         const esfera8 = document.querySelector('#esfera8');
         const esfera9 = document.querySelector('#esfera9');
+        const plano = document.querySelector('#plano');
         const mapa = document.querySelector('#plano');
 
         //elimina el moviment de les tecles del cursor
@@ -129,9 +136,34 @@
                     esfera7.setAttribute('visible', true);
                     esfera8.setAttribute('visible', true); 
                     esfera9.setAttribute('visible', true); 
+                    plano.setAttribute('visible', true);
                     mapa.setAttribute('visible', true);
                     idioma = "uk"
-                    playAudio("Intro");  
+                    playAudio(/assets/audios/uk/Abocador.mp3);  
+                })
+            }
+        });
+
+                AFRAME.registerComponent("casa", {
+            init: function () {
+                this.el.addEventListener("click", (e) => {
+                    sky.setAttribute('src', '#i00'); //Mostra la imatge 0  
+                    banderaEs.setAttribute('visible', false);
+                    banderaCat.setAttribute('visible', false);
+                    banderaUk.setAttribute('visible', false);
+                    esfera1.setAttribute('visible', true);
+                    esfera2.setAttribute('visible', true);
+                    esfera3.setAttribute('visible', true);
+                    esfera4.setAttribute('visible', true);
+                    esfera5.setAttribute('visible', true);
+                    esfera6.setAttribute('visible', true);
+                    esfera7.setAttribute('visible', true);
+                    esfera8.setAttribute('visible', true); 
+                    esfera9.setAttribute('visible', true); 
+                    plano.setAttribute('visible', true);
+                    mapa.setAttribute('visible', true);
+                    idioma = "uk"
+                    playAudio(/assets/audios/uk/Abocador.mp3);  
                 })
             }
         });
@@ -154,7 +186,7 @@
                     esfera9.setAttribute('visible', true);
                     mapa.setAttribute('visible', true);
                     idioma = "cat"
-                    playAudio("Intro");  //Aqui se modifica los audios*
+                    playAudio(/assets/audios/cat/Abocador.mp3);  
                 })
             }
         });
@@ -177,7 +209,7 @@
                     esfera9.setAttribute('visible', true);
                     mapa.setAttribute('visible', true);
                     idioma = "es"
-                    playAudio("Intro");  
+                    playAudio(/assets/audios/es/Abocador.mp3);    
                 })
             }
         });
@@ -276,6 +308,18 @@
             init: function () {
                 this.el.addEventListener("click", (e) => {
                     sky.setAttribute('src', '#i09'); //Mostra la imatge de la torre                
+                    if (sound.components.sound.isPlaying) {
+                        sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
+                    }
+                    playAudio("xddddddd");
+                })
+            }
+        }); 
+              
+        AFRAME.registerComponent("plano", {
+            init: function () {
+                this.el.addEventListener("click", (e) => {
+                    sky.setAttribute('src', '#i010'); //Mostra la imatge de la torre                
                     if (sound.components.sound.isPlaying) {
                         sound.components.sound.stopSound(); // Para el so si ja s'està reproduint
                     }
